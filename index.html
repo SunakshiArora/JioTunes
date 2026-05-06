@@ -65,7 +65,7 @@ body{
 nav{
   width:100%;
   display:flex;align-items:center;justify-content:space-between;
-  padding:18px 16px 0;
+  padding:40px 16px 0;
   max-width:1100px;align-self:center;
 }
 .nav-brand{display:flex;align-items:center;gap:9px}
@@ -144,6 +144,17 @@ nav{
 }
 .hchip:hover{background:rgba(43,197,180,.18);border-color:var(--teal);color:#fff}
 
+/* genre headers */
+.genre-header{grid-column:1/-1;margin-top:20px}
+.genre-header:first-child{margin-top:0}
+.genre-label{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(43,197,180,.2);border-radius:24px;
+  padding:7px 16px;font-size:12px;font-weight:700;
+  color:rgba(240,246,252,.8);letter-spacing:.4px;
+  text-transform:uppercase;margin-bottom:10px;
+}
+.genre-dot{display:none}
 /* wave */
 .wave{
   display:flex;align-items:center;justify-content:center;gap:2.5px;
@@ -158,6 +169,7 @@ nav{
   display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
   position:relative;z-index:1;
   animation:up .6s .35s ease both;
+  transform:translateX(-12px);
 }
 .cta{
   display:flex;align-items:center;justify-content:center;gap:10px;
@@ -414,15 +426,15 @@ nav{
   </div>
   </div>
 
-  <h1 class="hero-tagline">Hello Se Bhi Pehle</h1>
+  <h1 class="hero-tagline" id="animated-tagline">Hello Se Bhi Pehle</h1>
 
   <!-- Mood chips replace the old hero subtext -->
   <div class="hero-chips">
-    <span class="hchip">&#128145; Unhe feel karao jo words se nahi keh sakte</span>
-    <span class="hchip">&#129309; Friend, Mom, Lover - many options to pick from</span>
+    <span class="hchip">&#10084;&#65039; Express what words alone cannot say</span>
+    <span class="hchip">&#129309; Dedicate a song for your loved ones</span>
     <span class="hchip">&#10024; Your song, your identity</span>
-    <span class="hchip">&#128241; No more boring thing tring — just your mood</span>
-    <span class="hchip">&#127925; Naya gaana, naya mood — kabhi bhi badlo</span>
+    <span class="hchip">&#128241; No more boring tring tring — just your mood</span>
+    <span class="hchip">&#127925; New song, new mood — change your JioTune anytime</span>
   </div>
 
   <div class="wave" id="wave"></div>
@@ -480,28 +492,69 @@ nav{
 </div>
 
 <script>
-const SONGS=[{"name": "Bairan", "artist": "Banjare", "link": "jiosaavn://jiotune/song/HRoqBycHAnU", "g": ["#c94b4b", "#4b134f"]}, {"name": "Sitaare (From \"Ikkis\")", "artist": "Amitabh Bhattacharya, Arijit Singh, Sachin-Jigar", "link": "jiosaavn://jiotune/song/OR4pCSFdTlA", "g": ["#1a1a2e", "#4776e6"]}, {"name": "Ram Siya Ram", "artist": "Sachet Tandon", "link": "jiosaavn://jiotune/song/OCQeXSxcXkE", "g": ["#f7971e", "#ffd200"]}, {"name": "Krishnaya Vasudevaya", "artist": "Siddharth Amit Bhavsar, Prateeksha Srivastava", "link": "jiosaavn://jiotune/song/IjBZZhJHUGQ", "g": ["#4776e6", "#8e54e9"]}, {"name": "Jani Tumne Ek Sher Ko...", "artist": "Rakesh Pujara ft. Gold E Gill, Samvee", "link": "jiosaavn://jiotune/song/Rh4,ehdoYFE", "g": ["#11998e", "#38ef7d"]}, {"name": "Teri Yaadon Ki Chadar Odhe", "artist": "Janak Kumar", "link": "jiosaavn://jiotune/song/FVEJAwVABHc", "g": ["#d4145a", "#fbb03b"]}, {"name": "Aawaara Angaara", "artist": "A.R. Rahman, Faheem Abdullah, Irshad Kamil", "link": "jiosaavn://jiotune/song/Il8KZFldYEk", "g": ["#f12711", "#f5af19"]}, {"name": "Radhe Radhe", "artist": "Mista Baaz, Hansraj Raghuwanshi", "link": "jiosaavn://jiotune/song/GwkiVBZ,cAQ", "g": ["#f953c6", "#b91d73"]}, {"name": "Gehra Hua (From \"Dhurandhar\")", "artist": "Shashwat Sachdev, Arijit Singh, Irshad Kamil, Armaan Khan", "link": "jiosaavn://jiotune/song/KQE9fDgEbVw", "g": ["#2193b0", "#6dd5ed"]}, {"name": "Switch Off", "artist": "Rosh Blazze", "link": "jiosaavn://jiotune/song/NTkbAy50D1Y", "g": ["#0f0c29", "#302b63"]}, {"name": "Ganga Ke Kinare", "artist": "Bunny, Sagar", "link": "jiosaavn://jiotune/song/ES5YfEBTAwU", "g": ["#56ab2f", "#a8e063"]}, {"name": "Meri Maa Ke Barabar Koi Nahi", "artist": "Jubin Nautiyal, Payal Dev", "link": "jiosaavn://jiotune/song/JCseAQB2fkM", "g": ["#f7971e", "#e74c3c"]}, {"name": "Jaiye Sajana", "artist": "Satinder Sartaaj, Jasmine Sandlas, Shashwat Sachdev", "link": "jiosaavn://jiotune/song/GVwCdTNTXQU", "g": ["#ff6a00", "#ee0979"]}, {"name": "Samjhawan", "artist": "Jawad Ahmad, Sharib Toshi, Arijit Singh, Shreya Ghoshal", "link": "jiosaavn://jiotune/song/NCUEfRBHfQQ", "g": ["#4b134f", "#c94b4b"]}, {"name": "Tum Hi Ho", "artist": "Mithoon, Arijit Singh", "link": "jiosaavn://jiotune/song/EToxUyFpcwQ", "g": ["#e74c3c", "#8e44ad"]}, {"name": "Narayan Mil Jayega", "artist": "Jubin Nautiyal, Payal Dev, Manoj Muntashir", "link": "jiosaavn://jiotune/song/OTgyUxdxZ1I", "g": ["#11998e", "#38ef7d"]}, {"name": "Hamari Adhuri Kahani", "artist": "Jeet Gannguli, Arijit Singh, Rashmi-Virag", "link": "jiosaavn://jiotune/song/EScueywdQkE", "g": ["#2c3e50", "#fd746c"]}, {"name": "Saiyaara", "artist": "Tanishk Bagchi, Faheem Abdullah, Arslan Nizami, Irshad Kamil", "link": "jiosaavn://jiotune/song/O18beQR2eX8", "g": ["#834d9b", "#d04ed6"]}, {"name": "Raataan Lambiyan", "artist": "Tanishk Bagchi, Jubin Nautiyal, Asees Kaur", "link": "jiosaavn://jiotune/song/HTg-QzBjQl0", "g": ["#1a1a2e", "#16213e"]}, {"name": "Shree Hanuman Chalisa", "artist": "Hariharan, Lalit Sen, Chander", "link": "jiosaavn://jiotune/song/RyscfQJoVAU", "g": ["#b79400", "#ffd700"]}];
+const GENRES=[{"genre": "\ud83d\udd25 Trending", "color": "#f12711", "songs": [{"name": "Bairan", "artist": "Banjare", "link": "jiosaavn://jiotune/song/HRoqBycHAnU", "g": ["#c94b4b", "#4b134f"]}, {"name": "Switch Off", "artist": "Rosh Blazze", "link": "jiosaavn://jiotune/song/NTkbAy50D1Y", "g": ["#0f0c29", "#302b63"]}, {"name": "Aawaara Angaara", "artist": "A.R. Rahman, Faheem Abdullah, Irshad Kamil", "link": "jiosaavn://jiotune/song/Il8KZFldYEk", "g": ["#f12711", "#f5af19"]}, {"name": "Jani Tumne Ek Sher Ko...", "artist": "Rakesh Pujara ft. Gold E Gill, Samvee", "link": "jiosaavn://jiotune/song/Rh4,ehdoYFE", "g": ["#11998e", "#38ef7d"]}, {"name": "Sitaare (From \"Ikkis\")", "artist": "Amitabh Bhattacharya, Arijit Singh, Sachin-Jigar", "link": "jiosaavn://jiotune/song/OR4pCSFdTlA", "g": ["#1a1a2e", "#4776e6"]}]}, {"genre": "\u2764\ufe0f Romantic", "color": "#d4145a", "songs": [{"name": "Gehra Hua (From \"Dhurandhar\")", "artist": "Shashwat Sachdev, Arijit Singh, Irshad Kamil", "link": "jiosaavn://jiotune/song/KQE9fDgEbVw", "g": ["#2193b0", "#6dd5ed"]}, {"name": "Saiyaara", "artist": "Tanishk Bagchi, Faheem Abdullah, Arslan Nizami", "link": "jiosaavn://jiotune/song/O18beQR2eX8", "g": ["#834d9b", "#d04ed6"]}, {"name": "Tum Hi Ho", "artist": "Mithoon, Arijit Singh", "link": "jiosaavn://jiotune/song/EToxUyFpcwQ", "g": ["#e74c3c", "#8e44ad"]}, {"name": "Raataan Lambiyan", "artist": "Tanishk Bagchi, Jubin Nautiyal, Asees Kaur", "link": "jiosaavn://jiotune/song/HTg-QzBjQl0", "g": ["#1a1a2e", "#16213e"]}, {"name": "Samjhawan", "artist": "Jawad Ahmad, Sharib Toshi, Arijit Singh, Shreya Ghoshal", "link": "jiosaavn://jiotune/song/NCUEfRBHfQQ", "g": ["#4b134f", "#c94b4b"]}, {"name": "Hamari Adhuri Kahani", "artist": "Jeet Gannguli, Arijit Singh, Rashmi-Virag", "link": "jiosaavn://jiotune/song/EScueywdQkE", "g": ["#2c3e50", "#fd746c"]}, {"name": "Teri Yaadon Ki Chadar Odhe", "artist": "Janak Kumar", "link": "jiosaavn://jiotune/song/FVEJAwVABHc", "g": ["#d4145a", "#fbb03b"]}, {"name": "Jaiye Sajana", "artist": "Satinder Sartaaj, Jasmine Sandlas, Shashwat Sachdev", "link": "jiosaavn://jiotune/song/GVwCdTNTXQU", "g": ["#ff6a00", "#ee0979"]}]}, {"genre": "\ud83d\ude4f Devotional", "color": "#f7971e", "songs": [{"name": "Ram Siya Ram", "artist": "Sachet Tandon", "link": "jiosaavn://jiotune/song/OCQeXSxcXkE", "g": ["#f7971e", "#ffd200"]}, {"name": "Krishnaya Vasudevaya", "artist": "Siddharth Amit Bhavsar, Prateeksha Srivastava", "link": "jiosaavn://jiotune/song/IjBZZhJHUGQ", "g": ["#4776e6", "#8e54e9"]}, {"name": "Shree Hanuman Chalisa", "artist": "Hariharan, Lalit Sen, Chander", "link": "jiosaavn://jiotune/song/RyscfQJoVAU", "g": ["#b79400", "#ffd700"]}, {"name": "Radhe Radhe", "artist": "Mista Baaz, Hansraj Raghuwanshi", "link": "jiosaavn://jiotune/song/GwkiVBZ,cAQ", "g": ["#f953c6", "#b91d73"]}, {"name": "Ganga Ke Kinare", "artist": "Bunny, Sagar", "link": "jiosaavn://jiotune/song/ES5YfEBTAwU", "g": ["#56ab2f", "#a8e063"]}, {"name": "Narayan Mil Jayega", "artist": "Jubin Nautiyal, Payal Dev, Manoj Muntashir", "link": "jiosaavn://jiotune/song/OTgyUxdxZ1I", "g": ["#11998e", "#38ef7d"]}]}, {"genre": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc66 Family", "color": "#f7971e", "songs": [{"name": "Meri Maa Ke Barabar Koi Nahi", "artist": "Jubin Nautiyal, Payal Dev", "link": "jiosaavn://jiotune/song/JCseAQB2fkM", "g": ["#f7971e", "#e74c3c"]}]}];
 const list=document.getElementById('songs-list');
-SONGS.forEach((s,i)=>{
-  const init=s.name.split(' ').filter(w=>/^[a-zA-Z]/.test(w)).slice(0,2).map(w=>w[0]).join('').toUpperCase();
-  const c=document.createElement('div');
-  c.className='song-card';
-  c.style.animationDelay=(i*.03)+'s';
-  c.innerHTML=`
-    <div class="art">
-      <div class="art-inner" style="background:linear-gradient(135deg,${s.g[0]},${s.g[1]})">
-        ${init}
+let cardIdx=0;
+GENRES.forEach(genre=>{
+  // Genre header
+  const gh=document.createElement('div');
+  gh.className='genre-header';
+  gh.style.cssText='grid-column:1/-1';
+  gh.innerHTML=`<div class="genre-label" style="border-color:${genre.color}40;background:${genre.color}12"><span class="genre-dot" style="background:${genre.color}"></span>${genre.genre}</div>`;
+  list.appendChild(gh);
+  // Songs
+  genre.songs.forEach((s)=>{
+    const init=s.name.split(' ').filter(w=>/^[a-zA-Z]/.test(w)).slice(0,2).map(w=>w[0]).join('').toUpperCase();
+    const c=document.createElement('div');
+    c.className='song-card';
+    c.style.animationDelay=(cardIdx*.03)+'s';
+    cardIdx++;
+    c.innerHTML=`
+      <div class="art">
+        <div class="art-inner" style="background:linear-gradient(135deg,${s.g[0]},${s.g[1]})">${init}</div>
+        <div class="art-shine"></div>
       </div>
-      <div class="art-shine"></div>
-    </div>
-    <div class="song-info">
-      <span class="song-name">${s.name}</span>
-      <span class="song-artist">${s.artist}</span>
-    </div>
-    <a class="set-btn" href="${s.link}">Set Now</a>
-  `;
-  list.appendChild(c);
+      <div class="song-info">
+        <span class="song-name">${s.name}</span>
+        <span class="song-artist">${s.artist}</span>
+      </div>
+      <a class="set-btn" href="${s.link}">Set Now</a>
+    `;
+    list.appendChild(c);
+  });
 });
+
+// Multilingual tagline animation
+const taglines=[
+  "Hello Se Bhi Pehle",
+  "Hello से पहले",
+  "Hello এর আগে",
+  "Hello च्या आधी",
+  "Hello க்கு முன்",
+  "Hello కి ముందు",
+  "Hello ಗಿಂತ ಮೊದಲು",
+  "Hello ന് മുമ്പ്",
+  "Hello પહેલા",
+  "Hello ਤੋਂ ਪਹਿਲਾਂ",
+  "Hello سے پہلے",
+  "Hello ପୂର୍ବରୁ",
+  "Hello ৰ আগতে",
+  "Hello पूर्वम्",
+  "Hello च्या पयलीं",
+];
+const tEl=document.getElementById('animated-tagline');
+let tIdx=0;
+function cycleLang(){
+  if(!tEl)return;
+  tEl.style.transition='opacity .5s ease';
+  tEl.style.opacity='0';
+  setTimeout(()=>{
+    tIdx=(tIdx+1)%taglines.length;
+    tEl.textContent=taglines[tIdx];
+    tEl.style.opacity='1';
+  },500);
+}
+setInterval(cycleLang,3000);
 
 // Wave bars
 const wv=document.getElementById('wave');
