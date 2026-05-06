@@ -125,6 +125,7 @@ nav{
   margin-bottom:20px;
   position:relative;z-index:1;
   animation:up .6s .1s ease both;
+  transition:opacity .45s ease;
 }
 @keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
@@ -426,7 +427,7 @@ nav{
   </div>
   </div>
 
-  <h1 class="hero-tagline" id="animated-tagline">Hello Se Bhi Pehle</h1>
+  <h1 class="hero-tagline" id="animated-tagline">Hello se pehle</h1>
 
   <!-- Mood chips replace the old hero subtext -->
   <div class="hero-chips">
@@ -524,9 +525,9 @@ GENRES.forEach(genre=>{
   });
 });
 
-// Multilingual tagline animation
+// Multilingual tagline — 2s per language matching CSS delay logic
 const taglines=[
-  "Hello Se Bhi Pehle",
+  "Hello se pehle",
   "Hello से पहले",
   "Hello এর আগে",
   "Hello च्या आधी",
@@ -546,15 +547,14 @@ const tEl=document.getElementById('animated-tagline');
 let tIdx=0;
 function cycleLang(){
   if(!tEl)return;
-  tEl.style.transition='opacity .5s ease';
   tEl.style.opacity='0';
   setTimeout(()=>{
     tIdx=(tIdx+1)%taglines.length;
     tEl.textContent=taglines[tIdx];
     tEl.style.opacity='1';
-  },500);
+  },450);
 }
-setInterval(cycleLang,3000);
+setInterval(cycleLang,2000);
 
 // Wave bars
 const wv=document.getElementById('wave');
